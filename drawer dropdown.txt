@@ -1,0 +1,42 @@
+import Collapse from "@material-ui/core/Collapse";
+import ExpandLess from "@material-ui/icons/ExpandLess";
+import ExpandMore from "@material-ui/icons/ExpandMore";
+import HomeIcon from "@material-ui/icons/Home";
+
+
+const [leadershipTriadMenuOpen, setLeadershipTriadMenuOpen] = useState(false);
+
+    const handleLeadershipTriadClick = () => {
+        setLeadershipTriadMenuOpen(!leadershipTriadMenuOpen);
+    };
+
+
+
+
+<ListItem
+                                        button
+                                        onClick={() => handleLeadershipTriadClick()}
+                                    >
+                                        <ListItemIcon>
+                                            <HomeIcon color="primary" />
+                                        </ListItemIcon>
+                                        <ListItemText primary="Leadership Triad" />
+                                        {leadershipTriadMenuOpen ? (
+                                            <ExpandLess />
+                                        ) : (
+                                            <ExpandMore />
+                                        )}
+                                    </ListItem>
+                                    <Collapse
+                                        in={leadershipTriadMenuOpen}
+                                        timeout="auto"
+                                        unmountOnExit
+                                    >
+                                        <List component="div" disablePadding>
+                                            <ListItem button className={classes.nested}>
+                                                <ListItemIcon>
+                                                    <HomeIcon />
+                                                </ListItemIcon>
+                                            </ListItem>
+                                        </List>
+                                    </Collapse>

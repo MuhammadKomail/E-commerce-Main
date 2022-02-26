@@ -11,7 +11,7 @@ import YouTubeIcon from '@mui/icons-material/YouTube';
 function Footer1() {
     const theme = useTheme();
     const isMatched = useMediaQuery(theme.breakpoints.down('md'));
-    console.log(isMatched)
+    // console.log(isMatched)
     return (
         <footer className="footer">
             <Container maxWidth="xl" style={{ background: "black", color: "white", fontSize: 16 }}>

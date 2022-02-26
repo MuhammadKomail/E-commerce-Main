@@ -39,34 +39,13 @@ function AccountInfo(props) {
         console.log(user)
         axios.get('http://localhost:5000/' + id)
           .then(res => setData(res.data))
-
       }
     } else {
       Navigate('/login')
     }
   }, [])
   // ==================================================
-  // async function updateQuote(event) {
-  //   event.preventDefault()
 
-  //   const req = await fetch('http://localhost:5000/api/quote', {
-  //     method: 'POST',
-  //     headers: {
-  //       'Content-Type': 'application/json',
-  //       'x-access-token': localStorage.getItem('token'),
-  //     },
-  //     body: JSON.stringify({
-  //       quote: tempQuote,
-  //     }),
-  //   })
-  //   const data = await req.json()
-  //   if (data.status === 'ok') {
-  //     setQuote(tempQuote)
-  //     setTempQuote('')
-  //   } else {
-  //     alert(data.error)
-  //   }
-  // }
 
   function logOut() {
     localStorage.removeItem('token')

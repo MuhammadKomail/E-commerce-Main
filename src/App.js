@@ -1,8 +1,9 @@
 import './App.css';
 import { Provider } from "react-redux";
-import myStore,{persistor} from './redux/store'
+// import myStore,{persistor} from './redux/store'
 import AppRouter from './rout/rout';
-import {PersistGate} from "redux-persist/integration/react"
+// import {PersistGate} from "redux-persist/integration/react"
+import store from './redux/shoppingCart/store';
 
 
 
@@ -11,10 +12,10 @@ import {PersistGate} from "redux-persist/integration/react"
 function App() {
   return (
     <div className="App">
-      <Provider store={myStore}>
-      <PersistGate persistor={persistor}>
+      <Provider store={store}>
+      {/* <PersistGate persistor={persistor}> */}
         <AppRouter />
-    </PersistGate>
+    {/* </PersistGate> */}
     </Provider>
     </div>
   );

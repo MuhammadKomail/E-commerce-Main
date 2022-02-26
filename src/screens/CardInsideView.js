@@ -1,43 +1,45 @@
 import * as React from 'react';
-// import { styled } from '@mui/material/styles';
 import Box from '@mui/material/Box';
 import Button from '@mui/material/Button';
 import Grid from '@mui/material/Grid';
-// import ImageClicker from '../component/ImageClicker';
 import Footer from '../component/Footer1'
 import Header from '../component/Header'
 import { useLocation } from 'react-router'
 import "react-responsive-carousel/lib/styles/carousel.min.css";
 import { Carousel } from 'react-responsive-carousel';
 import { useState, useEffect } from 'react';
-import {connect} from "react-redux"
-import {addToCart} from "../redux/shopping/shopping-action"
+import { connect } from "react-redux"
+import { useNavigate } from 'react-router'
+import { useDispatch, useSelector } from 'react-redux';
+import { addCartData } from '../redux/shoppingCart/shopping-cart-actions';
+import swal from 'sweetalert';
 
-function CardInsideView(addToCart) {
-   const location = useLocation()
- 
-  // const AddItemsIntoCart =()=>{
-  // let productsString = localStorage.getItem('items')
-  // let products = []
-  // if(productsString){
-  //     products = JSON.parse(productsString)
-  // } 
-  // products.concat([location.state])
-  // localStorage.setItem('items', JSON.stringify(products))}
-  
-  // const [CartItems, setCartItems] = useState([])
-  // const AddItemsIntoCart =()=>{
-  //   console.log("working")
-  //   setCartItems([...CartItems,location.state]) 
-  //   // setCartItems([...localStorage.getItem("items"),location.state]) 
-  // }
+function CardInsideView() {
 
-  // useEffect(()=>{
-  //   if(CartItems.length){
+  const location = useLocation()
+  console.log(location.state)
 
-  //     localStorage.setItem("items",JSON.stringify(CartItems))
-  //   }
-  // },[CartItems])  
+  const navigate = useNavigate();
+
+  const dispatch = useDispatch();
+
+  function addToCart() {
+    console.log("Add To Cart")
+    addCartData(dispatch, location.state._id)
+    swal({
+      title: "Successfully!",
+      text: "Your Item Has Been Added To Your Cart list!",
+      icon: "success",
+      button: "Ok!",
+    });
+  }
+
+  React.useEffect(() => {
+    console.log('Working useEffect');
+    if (location.state == null) {
+      navigate('/')
+    }
+  }, [])
 
   return (
     <>
@@ -47,43 +49,40 @@ function CardInsideView(addToCart) {
         <Grid container spacing={2}>
           <Grid item xs={12} sm={4} xl={3}>
             <div className='rightView'>
-            <Carousel infiniteLoop useKeyboardArrows autoPlay >
+              <Carousel infiniteLoop useKeyboardArrows autoPlay >
                 <div>
-                    <img alt="img" src={location.state.img1} />
+                  {location.state == null ? null : <img alt="img" src={location.state.imageUrl1} />}
                 </div>
                 <div>
-                    <img alt="img" src={location.state.img2}/>
+                  {location.state == null ? null : <img alt="img" src={location.state.imageUrl2} />}
                 </div>
-                
-            </Carousel>
+
+              </Carousel>
               {/* <ImageClicker pic1={location.state.img1} pic2={location.state.img2}/> */}
             </div>
           </Grid>
           <Grid item xs={12} sm={8} xl={5}>
             <div className='leftView'>
               <div className='leftViewFirst'>
-                {location.state.title}
+                {location.state == null ? null : location.state.title}
               </div>
               <div className='leftViewSecond'>
-                Fabric: Korean Nidha
+                {location.state == null ? null : (location.state.fabric == '' ? null : `Fabric:` + location.state.fabric)}
               </div>
               <div className='leftViewThird'>
                 <b> Details:</b> <br />
-                This abaya features front closed with belt on bodice can be used for daily and casual wear navy blue is
-                inn these days with black hijab constructed on pure Korean nidha fabric comes along with pure Korean chiffon Sheila.
+                <p>{location.state == null ? null : location.state.description}</p>
               </div>
               <div className='leftViewFourth'>
-                <strike>PKR5,200</strike>
+                {location.state == null ? null : (location.state.discountPrice == null ? `PKR ${location.state.orignalPrice}` : <strike>PKR {location.state.orignalPrice}</strike>)}
               </div>
-              <div className='leftViewFifth'>
-                As low as
-              </div>
+              {location.state == null ? null : (location.state.discountPrice == null ? null : <div className='leftViewFifth'>As low as</div>)}
               <div className='leftViewSixth'>
-                <div className='leftViewSixthFirst'>{location.state.price}</div>
-                <div className='leftViewSixthSecond'>Availability: In stock</div>
+                {location.state == null ? null : (location.state.discountPrice == null ? null : <div className='leftViewSixthFirst'>{location.state.discountPrice}</div>)}
+                <div className='leftViewSixthSecond'>Availability: {location.state == null ? null : (location.state.availability)}</div>
               </div>
               <div className='leftViewSeven'>
-                <Button onClick = {()=>addToCart.addToCart(location.state.id)}className='leftViewSevenBtn' variant="contained">Add to Cart</Button>
+                {location.state == null ? null : (location.state.availability != 'Available' ? <p>Sorry The Product is Not Available</p> : <Button className='leftViewSevenBtn' onClick={addToCart} variant="contained">Add to Cart</Button>)}
               </div>
             </div>
           </Grid>
@@ -95,11 +94,6 @@ function CardInsideView(addToCart) {
   )
 }
 
-const mapDispatchToProps =(dispatch)=>{
-  return{
-  addToCart : (id)=> dispatch(addToCart(id))
-  }
 
-}
 
-export default connect(null,mapDispatchToProps)(CardInsideView)
+export default CardInsideView

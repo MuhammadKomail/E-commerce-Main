@@ -1,4 +1,3 @@
-
 import * as React from 'react';
 import { useState } from 'react';
 import Card from '@mui/material/Card';
@@ -15,17 +14,18 @@ import ShoppingCartIcon from '@mui/icons-material/ShoppingCart';
 export default function Cards(props) {
 
   const [isShown, setIsShown] = useState(false);
-  let pic1 = props.pic
+  let pic = props.pic
   let pic2 = props.pic2
   let newtag = props.new
+
   return (
     <Card sx={{ maxWidth: 345, borderRadius: 0, pb: 1, borderColor: "white" }}>
       <CardActionArea onMouseEnter={() => setIsShown(true)}
-        onMouseLeave={() => setIsShown(false)}>
+        onMouseLeave={() => setIsShown(false)} onClick={props.onClick}>
         <CardMedia
           component="img"
-          height="50%"
-          image={isShown ? pic2 : pic1}
+          height="250rem"
+          image={isShown ? pic2 : pic}
           alt="green iguana"
 
 
@@ -50,7 +50,7 @@ export default function Cards(props) {
         </Box> : null}
       </CardActionArea>
 
-      <CardContent sx={{ borderColor: "white" }}>
+      <CardContent sx={{ borderColor: "white" }} onClick={props.onClick}>
         <Typography sx={{ fontWeight: 'bold' }} variant="subtitle2" color="text.secondary">
           {props.title}
         </Typography>
@@ -59,10 +59,8 @@ export default function Cards(props) {
         </Typography>
       </CardContent>
       <div className='center1'>
-        <Button onClick={props.onClick} variant="outlined" style={{ color: "gray", borderColor: "lightgray", borderRadius: 0, alignItems: "center", alignContent: "center" }} size="small" endIcon={<ShoppingCartIcon />}>Add to Cart</Button>
+        <Button onClick={props.onClick1} variant="outlined" style={{ color: "gray", borderColor: "lightgray", borderRadius: 0, alignItems: "center", alignContent: "center" }} size="small" endIcon={<ShoppingCartIcon />}>Add to Cart</Button>
       </div>
-
-
     </Card>
   );
 }

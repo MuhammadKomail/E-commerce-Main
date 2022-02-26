@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 import { Container, Grid, Box, Typography } from '@mui/material'
 import Header from '../component/Header'
 import Footer from '../component/Footer1'
@@ -17,6 +17,14 @@ const theme = createTheme();
 
 const Login = () => {
     const navigate = useNavigate();
+    useEffect(() => {
+        const token = localStorage.getItem('token')
+        const id = localStorage.getItem('id')
+        if(token && id){
+            navigate('/Accountinfo')
+        }
+    }, [])
+    
     const [checkuser, setCheckuser] = React.useState({
         email: '',
         password: ''
@@ -39,6 +47,7 @@ const Login = () => {
     }
 
     const [error,setError] = React.useState()
+    
     async function loginUser(event) {
         event.preventDefault()
         const response = await fetch('http://localhost:5000/api/login', {
@@ -91,7 +100,6 @@ const Login = () => {
                                     autoComplete="email"
                                     onChange={setEmailAddress}
                                     value={checkuser.email}
-
                                 />
                                 <TextField
                                     margin="normal"

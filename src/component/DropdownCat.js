@@ -1,6 +1,5 @@
 import * as React from 'react';
 import { useState } from 'react';
-// import Typography from '@mui/material/Typography';
 import Button from '@mui/material/Button';
 import Popper from '@mui/material/Popper';
 import PopupState, { bindToggle, bindPopper } from 'material-ui-popup-state';
@@ -12,14 +11,6 @@ import DropdownCard from './dropdownCardCat';
 export default function PopperPopupState() {
     const [style, setStyle] = useState({ display: 'none' });
     const [anchorEl, setAnchorEl] = React.useState(null);
-
-    // const handlePopoverOpen = (event) => {
-    //     setAnchorEl(event.currentTarget);
-    // };
-
-    // const handlePopoverClose = () => {
-    //     setAnchorEl(null);
-    // };
 
     const open = Boolean(anchorEl);
     return (

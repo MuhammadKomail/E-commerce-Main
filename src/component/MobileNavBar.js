@@ -88,9 +88,23 @@ export default function PersistentDrawerLeft() {
     const NavigatingToBrandSubMain = () => {
         Navigate("/BrandSubMain")
     }
-    const NavigatingToCartScreen = () =>{
+    const NavigatingToCartScreen = () => {
         Navigate("/CartScreen");
     }
+    const StoredcartData = JSON.parse(localStorage.getItem('myCartData'))
+    const [cart, setCart] = useState([])
+
+    React.useEffect(() => {
+        if (StoredcartData) {
+            if (StoredcartData.length !== 0) {
+                setCart(StoredcartData)
+            } else {
+                setCart([])
+            }
+        } else {
+            setCart([])
+        }
+    }, [StoredcartData])
 
 
     const theme = useTheme();
@@ -135,12 +149,12 @@ export default function PersistentDrawerLeft() {
                         <MenuIcon />
                     </IconButton>
                     <Typography variant="h6" component="div" sx={{ flexGrow: 1 }}>
-                    <Link component={LinkRoute} to="/"><img src={logo} alt="Logo" className="imgMobileLogo" sx={{ marginTop: 5 }} width="100rem" /></Link>
+                        <Link component={LinkRoute} to="/"><img src={logo} alt="Logo" className="imgMobileLogo" sx={{ marginTop: 5 }} width="100rem" /></Link>
                     </Typography>
                     <div onClick={NavigatingToCartScreen} className='firstNavIcon'>
-                        <Link component={LinkRoute} to="/CartScreen" className='personIcon' sx={{ paddingLeft: 4 }}  ><LocalMallIcon /></Link>0 items
+                        <Link component={LinkRoute} to="/CartScreen" className='personIcon' sx={{ paddingLeft: 4 }}  ><LocalMallIcon />&nbsp;</Link>{cart.length} items
                     </div>
-                    
+
                     <div onClick={NavigatingTologin} className='firstNavIcon'>
                         <Link className='personIcon' href="#" ><PersonOutlinedIcon /></Link>
                     </div>
@@ -200,25 +214,25 @@ export default function PersistentDrawerLeft() {
                             >
                                 <List component="div" disablePadding>
                                     <ListItem button>
-                                        <p className="mobileNavBarDrawerFontSize"><ArrowForwardIosSharpIcon className='icons' />PRINTED SHIRT</p>
+                                        <Link className='linkText' href="/WprintedShirt" ><p className="mobileNavBarDrawerFontSize"><ArrowForwardIosSharpIcon className='icons' />PRINTED SHIRT</p></Link>
                                     </ListItem>
                                     <ListItem button>
-                                        <p className="mobileNavBarDrawerFontSize"><ArrowForwardIosSharpIcon className='icons' />EMBROIDERED</p>
+                                    <Link className='linkText' href="/WEmbro" ><p className="mobileNavBarDrawerFontSize"><ArrowForwardIosSharpIcon className='icons' />EMBROIDERED</p></Link>
                                     </ListItem>
                                     <ListItem button>
-                                        <p className="mobileNavBarDrawerFontSize"><ArrowForwardIosSharpIcon className='icons' />SHIRT</p>
+                                        <Link className='linkText' href="/Wshirt" ><p className="mobileNavBarDrawerFontSize"><ArrowForwardIosSharpIcon className='icons' />SHIRT</p></Link>
                                     </ListItem>
                                     <ListItem button>
-                                        <p className="mobileNavBarDrawerFontSize"><ArrowForwardIosSharpIcon className='icons' />DUPATTA</p>
+                                        <Link className='linkText' href="/Wduppata" ><p className="mobileNavBarDrawerFontSize"><ArrowForwardIosSharpIcon className='icons' />DUPATTA</p></Link>
                                     </ListItem>
                                     <ListItem button>
-                                        <p className="mobileNavBarDrawerFontSize"><ArrowForwardIosSharpIcon className='icons' />2 PIECE</p>
+                                        <Link className='linkText' href="/W2piece" ><p className="mobileNavBarDrawerFontSize"><ArrowForwardIosSharpIcon className='icons' />2 PIECE</p></Link>
                                     </ListItem>
                                     <ListItem button>
-                                        <p className="mobileNavBarDrawerFontSize"><ArrowForwardIosSharpIcon className='icons' />3 PIECE</p>
+                                        <Link className='linkText' href="/W3piece" ><p className="mobileNavBarDrawerFontSize"><ArrowForwardIosSharpIcon className='icons' />3 PIECE</p></Link>
                                     </ListItem>
                                     <ListItem button>
-                                        <p className="mobileNavBarDrawerFontSize"><ArrowForwardIosSharpIcon className='icons' />TROUSERS</p>
+                                        <Link className='linkText' href="/WprintedShirt" ><p className="mobileNavBarDrawerFontSize"><ArrowForwardIosSharpIcon className='icons' />TROUSERS</p></Link>
                                     </ListItem>
                                 </List>
                             </Collapse>
@@ -239,19 +253,19 @@ export default function PersistentDrawerLeft() {
                             >
                                 <List component="div" disablePadding>
                                     <ListItem button>
-                                        <p className="mobileNavBarDrawerFontSize"><ArrowForwardIosSharpIcon className='icons' />PASHA</p>
+                                        <Link className='linkText' href="/Mpasha" ><p className="mobileNavBarDrawerFontSize"><ArrowForwardIosSharpIcon className='icons' />PASHA</p></Link>
                                     </ListItem>
                                     <ListItem button>
-                                        <p className="mobileNavBarDrawerFontSize"><ArrowForwardIosSharpIcon className='icons' />MELANGE</p>
+                                        <Link className='linkText' href="/MELANGE" ><p className="mobileNavBarDrawerFontSize"><ArrowForwardIosSharpIcon className='icons' />MELANGE</p></Link>
                                     </ListItem>
                                     <ListItem button>
-                                        <p className="mobileNavBarDrawerFontSize"><ArrowForwardIosSharpIcon className='icons' />GRACE</p>
+                                        <Link className='linkText' href="/Mgrace" ><p className="mobileNavBarDrawerFontSize"><ArrowForwardIosSharpIcon className='icons' />GRACE</p></Link>
                                     </ListItem>
                                     <ListItem button>
-                                        <p className="mobileNavBarDrawerFontSize"><ArrowForwardIosSharpIcon className='icons' />AHMAD FABRICS</p>
+                                        <Link className='linkText' href="/Mahmed" ><p className="mobileNavBarDrawerFontSize"><ArrowForwardIosSharpIcon className='icons' />AHMAD FABRICS</p></Link>
                                     </ListItem>
                                     <ListItem button>
-                                        <p className="mobileNavBarDrawerFontSize"><ArrowForwardIosSharpIcon className='icons' />BIN YAMEEN</p>
+                                        <Link className='linkText' href="/Myameen" ><p className="mobileNavBarDrawerFontSize"><ArrowForwardIosSharpIcon className='icons' />BIN YAMEEN</p></Link>
                                     </ListItem>
                                 </List>
                             </Collapse>
@@ -262,7 +276,7 @@ export default function PersistentDrawerLeft() {
                 <List>
                     <ListItem button>
                         <ListItemIcon>
-                            <b className="mobileNavBarDrawerFontSize"> NEW ARRIVAL </b>
+                            <Link className='linkText' href="/NewArrival" ><b className="mobileNavBarDrawerFontSize"> NEW ARRIVAL </b></Link>
                         </ListItemIcon>
                         <ListItemText />
                     </ListItem>
@@ -271,7 +285,7 @@ export default function PersistentDrawerLeft() {
                 <List>
                     <ListItem button>
                         <ListItemIcon>
-                            <b className="mobileNavBarDrawerFontSize"> SUMMER COLLECTION </b>
+                            <Link className='linkText' href="/Summer" ><b className="mobileNavBarDrawerFontSize"> SUMMER COLLECTION </b></Link>
                         </ListItemIcon>
                         <ListItemText />
                     </ListItem>
@@ -280,7 +294,7 @@ export default function PersistentDrawerLeft() {
                 <List>
                     <ListItem button>
                         <ListItemIcon>
-                            <b className="mobileNavBarDrawerFontSize"> WINTER COLLECTION </b>
+                            <Link className='linkText' href="/Winter" ><b className="mobileNavBarDrawerFontSize"> WINTER COLLECTION </b></Link>
                         </ListItemIcon>
                         <ListItemText />
                     </ListItem>
@@ -291,7 +305,7 @@ export default function PersistentDrawerLeft() {
 
                     <ListItem button>
                         <ListItemIcon>
-                            <b className="mobileNavBarDrawerFontSize"> READY TO WEAR </b>
+                            <Link className='linkText' href="/NewArrival" ><b className="mobileNavBarDrawerFontSize"> READY TO WEAR </b></Link>
                         </ListItemIcon>
                         <ListItemText />
                     </ListItem>
@@ -301,7 +315,7 @@ export default function PersistentDrawerLeft() {
 
                     <ListItem button>
                         <ListItemIcon>
-                            <b className="mobileNavBarDrawerFontSize"> WOMEN </b>
+                            <Link className='linkText' href="Women" ><b className="mobileNavBarDrawerFontSize"> WOMEN </b></Link>
                         </ListItemIcon>
                         <ListItemText />
                     </ListItem>
@@ -311,7 +325,7 @@ export default function PersistentDrawerLeft() {
 
                     <ListItem button>
                         <ListItemIcon>
-                            <b className="mobileNavBarDrawerFontSize"> KIDS </b>
+                            <Link className='linkText' href="/Childrens" ><b className="mobileNavBarDrawerFontSize"> KIDS </b></Link>
                         </ListItemIcon>
                         <ListItemText />
                     </ListItem>
@@ -321,7 +335,7 @@ export default function PersistentDrawerLeft() {
 
                     <ListItem button>
                         <ListItemIcon>
-                            <b className="mobileNavBarDrawerFontSize"> SALE </b>
+                            <Link className='linkText' href="/FabricBanarsi" ><b className="mobileNavBarDrawerFontSize"> SALE </b></Link>
                         </ListItemIcon>
                         <ListItemText />
                     </ListItem>
@@ -330,7 +344,7 @@ export default function PersistentDrawerLeft() {
                 <List>
                     <ListItem button>
                         <ListItemIcon>
-                            <b className="mobileNavBarDrawerFontSize"> MEN </b>
+                            <Link className='linkText' href="/Men" ><b className="mobileNavBarDrawerFontSize"> MEN </b></Link>
                         </ListItemIcon>
                         <ListItemText />
                     </ListItem>
@@ -342,7 +356,7 @@ export default function PersistentDrawerLeft() {
                         button
                         onClick={() => handleLeadershipTriadClickShop()}
                     >
-                        <p className="mobileNavBarDrawerFontSize">SHOP BY BRANDS</p>
+                        <Link className='linkText' href="#" ><p className="mobileNavBarDrawerFontSize">SHOP BY BRANDS</p></Link>
                         {leadershipTriadMenuOpenShop ? (
                             <ExpandLess />
                         ) : (

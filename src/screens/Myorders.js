@@ -1,23 +1,70 @@
 import React from 'react'
-import { Container, Alert } from '@mui/material'
+import { Container, Alert, Grid } from '@mui/material'
+import axios from 'axios'
+import NoDataFound from './NoDataFound'
+import Loader from '../component/Loader'
+import Table from '@mui/material/Table';
+import TableBody from '@mui/material/TableBody';
+import TableCell from '@mui/material/TableCell';
+import TableContainer from '@mui/material/TableContainer';
+import TableHead from '@mui/material/TableHead';
+import TableRow from '@mui/material/TableRow';
+import Paper from '@mui/material/Paper';
 
-let item = []
 
 const Myorders = () => {
-  if (item.length === 0) {
-    return (
-      <>
+  const [loading, setLoading] = React.useState(true)
+  const [formData, setFormData] = React.useState([])
+  const StoredDataOfUserId = localStorage.getItem('id')
+  let filterFormData = formData.length == 0 ? 0 : formData.filter((fil) => fil.idOfUser == StoredDataOfUserId)
 
-        <Container height="400px" alignitem="center" maxWidth="lg" >
-          <Alert severity="warning">You have placed no orders</Alert>
-        </Container>
-      </>
-    );
-  }
+  React.useEffect(() => {
+    axios.get('http://localhost:5000/formData/get')
+      .then(res => {
+        setLoading(false)
+        setFormData(res.data)
+      })
+  }, [filterFormData])
+
   return (
-    <div>Myorders</div>
-  )
+    <>
+      <TableContainer component={Paper}>
+        <Table sx={{ minWidth: 650 }} aria-label="customized table">
+          <TableHead>
+            <TableRow>
+              <TableCell>Index</TableCell>
+              <TableCell>Province</TableCell>
+              <TableCell>City</TableCell>
+              <TableCell>Address</TableCell>
+              <TableCell>Order Amount</TableCell>
+              <TableCell>Status</TableCell>
+            </TableRow>
+          </TableHead>
+          {loading ? <Loader /> : filterFormData && filterFormData.length !== 0 ? filterFormData.map((e, i) => {
+            return (
+              <>
+                <TableBody>
+                  <TableRow
+                    sx={{ '&:last-child td, &:last-child th': { border: 0 } }}
+                  >
+                    <TableCell>{i + 1}</TableCell>
+                    <TableCell>{e.Province}</TableCell>
+                    <TableCell>{e.City}</TableCell>
+                    <TableCell>{e.Address}</TableCell>
+                    <TableCell>{e.orderAmount}</TableCell>
+                    <TableCell>{e.status}</TableCell>
+                  </TableRow>
+                  {/* ))} */}
+                </TableBody>
+              </>
+            )
+          }) : <NoDataFound />}
+        </Table>
+      </TableContainer>
 
+    </>
+
+  )
 }
 
 export default Myorders

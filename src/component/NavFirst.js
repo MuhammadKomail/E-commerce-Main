@@ -11,17 +11,9 @@ import { connect } from "react-redux"
 import { useEffect, useState } from 'react';
 
 
-function NavFirst(cartItems) {
-    const [cartCounter, setCartCounter] = useState(0)
-    useEffect(() => {
-        let count = 0;
-        cartItems.Cart.forEach(item => {
-            count += item.qty
-        })
-
-        setCartCounter(count)
-
-    }, [cartItems.Cart, cartCounter])
+function NavFirst() {
+    const StoredcartData = JSON.parse(localStorage.getItem('myCartData'))
+    const [cart, setCart] = useState([])
 
     const Navigate = useNavigate()
     const NavigatingTologin = () => {
@@ -31,6 +23,20 @@ function NavFirst(cartItems) {
     const NavigatingToCartScreen = () => {
         Navigate("/CartScreen");
     }
+
+    useEffect(() => {
+        if (StoredcartData) {
+            if (StoredcartData.length !== 0) {
+                setCart(StoredcartData)
+            } else {
+                setCart([])
+            }
+        } else {
+            setCart([])
+        }
+        // console.log(cart.length);
+    }, [StoredcartData])
+
     return (
         <>
             <form>
@@ -78,7 +84,7 @@ function NavFirst(cartItems) {
                             <Link className='personIcon' href="#" ><PersonOutlinedIcon /></Link>
                         </div>
                         <div onClick={NavigatingToCartScreen} className='firstNavIcon'>
-                            <Link component={LinkRoute} to="/CartScreen" className='personIcon' sx={{ paddingLeft: 4 }}  ><LocalMallIcon /></Link>{cartCounter}
+                            <Link component={LinkRoute} to="/CartScreen" className='personIcon' sx={{ paddingLeft: 4 }}  ><LocalMallIcon /></Link>{cart.length}
                         </div>
                     </div>
                 </div>
@@ -87,10 +93,6 @@ function NavFirst(cartItems) {
     )
 }
 
-const mapStateToProps = (state) => {
-    return {
-        Cart: state.shop.cartItems,
-    };
-}
 
-export default connect(mapStateToProps)(NavFirst)
+
+export default NavFirst;

@@ -1,6 +1,3 @@
-
-
-
 /* =================================== */
 /* Card Start CSS */
 .cardMain {
@@ -588,6 +585,7 @@
     display: flex;
     flex-direction: column;
 }
+
 .shippingMethodMainFirst {
     padding: 15px;
     background-color: black;
@@ -629,10 +627,12 @@
     display: flex;
     flex-direction: row;
 }
-.shippingMethodMainSecondSecondText{
-    padding-left: 25px; 
+
+.shippingMethodMainSecondSecondText {
+    padding-left: 25px;
 }
-.shippingMethodMainThird{
+
+.shippingMethodMainThird {
     display: inline-block;
     border: 1px solid black;
     /* padding-top: 1px; */
@@ -645,16 +645,19 @@
     padding-bottom: 5px;
 
 }
-.shippingMethodMainThirdTextArea{
+
+.shippingMethodMainThirdTextArea {
     width: 350px;
     height: 100px;
 }
-.straightLine{
+
+.straightLine {
     border: 6px solid black;
-            height: 200px;
-            /* position:absolute; */
-            left: 50%;
+    height: 200px;
+    /* position:absolute; */
+    left: 50%;
 }
+
 /* Shipping Method End */
 /* ======================= */
 
@@ -674,71 +677,86 @@
     display: flex;
     flex-direction: row;
 } */
-.accountFirst{
+.accountFirst {
     font-size: 12px !important;
     padding-bottom: 10px !important;
     margin-top: 20px !important;
 }
-.accountSecond{
+
+.accountSecond {
     margin-top: 40px !important;
     padding: 10px !important;
     font-size: 12px !important;
     display: inline !important;
     justify-content: flex-start !important;
-    padding: 0% !important;   
+    padding: 0% !important;
 }
-.accountHeading{
+
+.accountHeading {
     font-size: 19px;
     margin-top: 27px;
     margin-left: 75px;
 }
+
 /* Account End */
 /* ======================= */
 
 
-.back{
+.back {
     margin-left: 30px;
     margin-top: 50px;
     display: flex;
     flex-direction: row;
     color: black !important;
-    text-decoration: none !important; 
+    text-decoration: none !important;
 }
-.backIcon{
+
+.backIcon {
     display: block;
     padding-top: 20px;
 }
-.linkText{
+
+.linkText {
     color: black !important;
     text-decoration: none;
 }
 
-.submitBtn{
+.submitBtn {
     background-color: black !important;
 }
 
-.center{
+.center {
     display: flex;
     justify-content: center;
     align-items: center;
     padding-bottom: 50px;
-    
+
 }
-.center1{
+
+.center1 {
     display: flex;
     justify-content: center;
     align-items: center;
-    
+
 }
 
-.pageNotFOund{
-    padding:100px;
+.pageNotFOund {
+    padding: 100px;
     font-weight: bolder;
     font-size: 30px;
     display: flex;
     justify-content: center;
     align-items: center;
 }
-.error{
-    color:#D51243
+
+.error {
+    color: #D51243
+}
+
+.center {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 200px;
+    align-content: center;
 }

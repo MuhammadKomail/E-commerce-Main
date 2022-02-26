@@ -18,29 +18,29 @@ export default function Navbar() {
             <Dropdown />
           </div>
           <div className='SecondNavBarMainSecond'>
-            <Link href="#" className='link'>NEW ARRIVAL</Link>
+            <Link href="/NewArrival" className='link'>NEW ARRIVAL</Link>
           </div>
           <div className='SecondNavBarMainFourth'>
-            <Link href="#" className='link'>SUMMER COLLECTION</Link>
+            <Link href="/Summer" className='link'>SUMMER COLLECTION</Link>
           </div>
           <div className='SecondNavBarMainThird'>
-            <Link href="#" className='link'>WINTER COLLECTION</Link>
+            <Link href="/Winter" className='link'>WINTER COLLECTION</Link>
           </div>
           <div className='SecondNavBarMainFifth'>
-            <Link href="#" className='link'>READY TO WEAR</Link>
+            <Link href="/FabricCambric" className='link'>READY TO WEAR</Link>
           </div>
           <div className='SecondNavBarMainSixth'>
-            <Link href="#" className='link'>WOMEN</Link>
+            <Link href="/Women" className='link'>WOMEN</Link>
           </div>
           <div className='SecondNavBarMainSeven'>
-            <Link href="#" className='link'>KID</Link>
+            <Link href="/Childrens" className='link'>KID</Link>
           </div>
           <div className='SecondNavBarMainEight'>
-            <Link href="#" className='link'>SALE</Link>
+            <Link href="/FabricBanarsi" className='link'>SALE</Link>
           </div>
 
           <div className='SecondNavBarMainNine'>
-            <Link href="#" className='link'> MEN</Link>
+            <Link href="/Men" className='link'> MEN</Link>
           </div>
           <div className=''>
             <Link component={LinkRoute} to="/BrandSubMain" className='link'> <Dropdown2 className="link" /></Link>

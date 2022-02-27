@@ -15,7 +15,7 @@ const Myaccount = () => {
 
     useEffect(() => {
         const id = localStorage.getItem('id')
-        axios.get('http://localhost:5000/' + id)
+        axios.get('https://surkhab.herokuapp.com/' + id)
             .then(res => setData(res.data))
         console.log(data)
     }, [])

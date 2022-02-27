@@ -88,7 +88,7 @@ export default function ShippingUserAdrs() {
         e.preventDefault();
         setFormErrors(validate(formValues))
         setIsSubmit(true)
-        axios.post('http://localhost:5000/add/formData', formValues)
+        axios.post('https://surkhab.herokuapp.com/add/formData', formValues)
             .then(res => { 
                 console.log(res.data)
                 navigate('/Accountinfo/Myorders')

@@ -19,7 +19,7 @@ const Myorders = () => {
   let filterFormData = formData.length == 0 ? 0 : formData.filter((fil) => fil.idOfUser == StoredDataOfUserId)
 
   React.useEffect(() => {
-    axios.get('http://localhost:5000/formData/get')
+    axios.get('https://surkhab.herokuapp.com/formData/get')
       .then(res => {
         setLoading(false)
         setFormData(res.data)

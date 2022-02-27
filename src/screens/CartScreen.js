@@ -31,7 +31,7 @@ const CartScreen = () => {
 
 
   useEffect(() => {
-    axios.get('http://localhost:5000/cards/')
+    axios.get('https://surkhab.herokuapp.com/cards/')
       .then(res => {
         setData(res.data)
         setLoading(false)

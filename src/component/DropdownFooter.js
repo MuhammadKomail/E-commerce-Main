@@ -29,10 +29,10 @@ export default function SimpleAccordion() {
                                 Monday - Saturday | 09:00 AM - 06:00 PM</Box>
                             <Box sx={{ mt: 3 }}>
                                 <Grid alignItems="center">
-                                    <Link href="/" color="inherit" underline="none">  Facebook </Link>
-                                    <Link href="/" color="inherit" underline="none" sx={{ mx: 1 }}> Instagram </Link>
-                                    <Link href="/" color="inherit" underline="none"> Whatsapp </Link>
-                                    <Link href="/" color="inherit" underline="none" sx={{ mx: 1 }}> Youtube </Link>
+                                    <Link href="/" color="inherit" underline="none">  <FacebookIcon /> </Link>
+                                    <Link href="/" color="inherit" underline="none" sx={{ mx: 1 }}> <InstagramIcon /> </Link>
+                                    <Link href="/" color="inherit" underline="none"> <WhatsappRoundedIcon /> </Link>
+                                    <Link href="/" color="inherit" underline="none" sx={{ mx: 1 }}> <YouTubeIcon /> </Link>
                                 </Grid>
                             </Box>
                         </AccordionDetails>
@@ -43,14 +43,15 @@ export default function SimpleAccordion() {
                             aria-controls="panel2a-content"
                             id="panel2a-header"
                         >
-                            <Typography>About us</Typography>
+                            <Typography>Information</Typography>
                         </AccordionSummary>
                         <AccordionDetails>
-                            <Box sx={{ mt: 1 }}><Link href="/" color="inherit" underline="none"> Gallery</Link></Box>
-                            <Box sx={{ mt: 3 }}><Link href="/" color="inherit" underline="none"> Shipping and Handling</Link></Box>
-                            <Box sx={{ mt: 3 }}><Link href="/" color="inherit" underline="none"> About Us</Link></Box>
-                            <Box sx={{ mt: 3 }}><Link href="/" color="inherit" underline="none"> Gift Cards</Link></Box>
-                            <Box sx={{ mt: 3 }}><Link href="/" color="inherit" underline="none"> Payments</Link></Box>
+                            <Box sx={{ mt: 1 }}><Link href="/" color="inherit" underline="none"> Home</Link></Box>
+                            <Box sx={{ mt: 3 }}><Link href="/Men" color="inherit" underline="none"> Men</Link></Box>
+                            <Box sx={{ mt: 3 }}><Link href="/Women" color="inherit" underline="none"> Women</Link></Box>
+                            <Box sx={{ mt: 3 }}><Link href="/Childrens" color="inherit" underline="none"> Kid</Link></Box>
+                            <Box sx={{ mt: 3 }}><Link href="/NewArrival" color="inherit" underline="none"> New Arrival</Link></Box>
+                            <Box sx={{ mt: 3 }}><Link href="/Summer" color="inherit" underline="none"> Summer Collection</Link></Box>
 
                         </AccordionDetails>
                     </Accordion>
@@ -61,15 +62,15 @@ export default function SimpleAccordion() {
                             aria-controls="panel1a-content"
                             id="panel1a-header"
                         >
-                            <Typography> Stay Connected</Typography>
+                            <Typography> Fabrics</Typography>
                         </AccordionSummary>
                         <AccordionDetails>
-                            <Box sx={{ mt: 1 }}><Link href="/" color="inherit" underline="none"> Gallery</Link></Box>
-                            <Box sx={{ mt: 3 }}><Link href="/" color="inherit" underline="none"> Contac Us</Link></Box>
-                            <Box sx={{ mt: 3 }}><Link href="/" color="inherit" underline="none"> Privacy Policy</Link></Box>
-                            <Box sx={{ mt: 3 }}><Link href="/" color="inherit" underline="none"> Return & Exchange</Link></Box>
-                            <Box sx={{ mt: 3 }}><Link href="/" color="inherit" underline="none"> Terms & conditions</Link></Box>
-                            <Box sx={{ mt: 3, mb: 3 }}><Link href="/" color="inherit" underline="none">FAQs</Link></Box>
+                            <Box sx={{ mt: 1 }}><Link href="/FabricCambric" color="inherit" underline="none"> Cambric</Link></Box>
+                            <Box sx={{ mt: 3 }}><Link href="/FabricLinen" color="inherit" underline="none"> Linen</Link></Box>
+                            <Box sx={{ mt: 3 }}><Link href="/FabricChiffon" color="inherit" underline="none"> Chiffon</Link></Box>
+                            <Box sx={{ mt: 3 }}><Link href="/FabricBanarsi" color="inherit" underline="none"> Banarsi</Link></Box>
+                            <Box sx={{ mt: 3 }}><Link href="/FabricKhaddar" color="inherit" underline="none"> Khaddar</Link></Box>
+                            <Box sx={{ mt: 3, mb: 3 }}><Link href="/FabricVelvet" color="inherit" underline="none">Velvet</Link></Box>
                             <Box sx={{ mt: 3 }} sx={{ display: "flex", flexDirection: "row" }}>
                                 <TextField sx={{ display: "inline-block" }} size="small" label="Enter you email" style={{ background: "white" }} />
                                 <Button variant="contained" color="success" sx={{ display: "inline-block" }} style={{ borderRadius: 0, padding: 10, fontSize: 12, overflow: "hidden" }}>Subscribe</Button></Box>

@@ -37,7 +37,7 @@ function AccountInfo(props) {
         Navigate('/login')
       } else {
         console.log(user)
-        axios.get('http://localhost:5000/' + id)
+        axios.get('https://surkhab.herokuapp.com/' + id)
           .then(res => setData(res.data))
       }
     } else {

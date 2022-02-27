@@ -52,7 +52,7 @@ function CategoryMain() {
             button: "Ok!",
           });
     }
-    axios.get('http://localhost:5000/cards/')
+    axios.get('https://surkhab.herokuapp.com/cards/')
         .then((res) => {
             setData(res.data)
             setLoader(false)

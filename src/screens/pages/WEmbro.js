@@ -14,10 +14,13 @@ import { addCartData } from '../../redux/shoppingCart/shopping-cart-actions';
 import { useDispatch, useSelector } from 'react-redux';
 import NoDataFound from '../NoDataFound';
 import swal from 'sweetalert';
+import { fileteredData } from '../../helper/filter_data';
 
 function CategoryMain() {
     const [options, setOptions] = React.useState("");
     const [data, setData] = React.useState([]);
+    const [filterData, setFilterData] = React.useState([])
+
 
     const state = useSelector(state => state)
 
@@ -52,13 +55,25 @@ function CategoryMain() {
             button: "Ok!",
           });
     }
-    axios.get('https://surkhab.herokuapp.com/cards/')
-        .then((res) => {
-            setData(res.data)
-            setLoader(false)
-        })
+    // axios.get('https://surkhab.herokuapp.com/cards/')
+    //     .then((res) => {
+    //         setData(res.data)
+    //         setLoader(false)
+    //     })
 
-    let filterData = data.length == 0 ? 0 : data.filter((fil) => fil.subCategory == 'EMBROIDERED')
+        useEffect(() => {
+            axios.get('https://surkhab.herokuapp.com/cards/')
+            .then((res) => {
+                setData(res.data)
+                setFilterData(fileteredData(res.data,'subCategory','EMBROIDERED'))
+                setLoader(false)
+            })
+    
+            
+        }, [])
+
+
+    // let filterData = data.length == 0 ? 0 : data.filter((fil) => fil.subCategory == 'EMBROIDERED')
     return (
         <>
             <Header />
@@ -67,7 +82,8 @@ function CategoryMain() {
                     return (
                         <>
                             <Grid item xs={6} md={3} key={e._id}>
-                                <Cards onClick1={() => addToCard(e)} onClick={() => viewDetails(e)} notnew={true} pic={e.imageUrl1} pic2={e.imageUrl2} title={e.title} price={e.orignalPrice} />
+                                <Cards onClick1={() => addToCard(e)} onClick={() => viewDetails(e)} notnew={true} pic={e.imageUrl1} pic2={e.imageUrl2} title={e.title} price={e.orignalPrice} 
+                                price2={e.dorignalPrice} cardData={e}/>
                             </Grid>
                         </>
                     )

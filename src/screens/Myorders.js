@@ -33,7 +33,7 @@ const Myorders = () => {
           <TableHead>
             <TableRow>
               <TableCell>Index</TableCell>
-              <TableCell>Province</TableCell>
+              <TableCell>Name</TableCell>
               <TableCell>City</TableCell>
               <TableCell>Address</TableCell>
               <TableCell>Order Amount</TableCell>
@@ -48,7 +48,7 @@ const Myorders = () => {
                     sx={{ '&:last-child td, &:last-child th': { border: 0 } }}
                   >
                     <TableCell>{i + 1}</TableCell>
-                    <TableCell>{e.Province}</TableCell>
+                    <TableCell>{e.firstName}</TableCell>
                     <TableCell>{e.City}</TableCell>
                     <TableCell>{e.Address}</TableCell>
                     <TableCell>{e.orderAmount}</TableCell>

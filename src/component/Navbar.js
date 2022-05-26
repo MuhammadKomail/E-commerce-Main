@@ -21,13 +21,19 @@ export default function Navbar() {
             <Link href="/NewArrival" className='link'>NEW ARRIVAL</Link>
           </div>
           <div className='SecondNavBarMainFourth'>
-            <Link href="/Summer" className='link'>SUMMER COLLECTION</Link>
+            <Link href="/Eid" className='link'>EID</Link>
+          </div>
+          <div className='SecondNavBarMainFourth'>
+            <Link href="/Summer" className='link'>SUMMER</Link>
           </div>
           <div className='SecondNavBarMainThird'>
-            <Link href="/Winter" className='link'>WINTER COLLECTION</Link>
+            <Link href="/Winter" className='link'>WINTER</Link>
+          </div>
+          <div className='SecondNavBarMainThird'>
+            <Link href="/WeddingWear" className='link'>WEDDING WEAR</Link>
           </div>
           <div className='SecondNavBarMainFifth'>
-            <Link href="/FabricCambric" className='link'>READY TO WEAR</Link>
+            <Link href="/ReadyToWear" className='link'>READY TO WEAR</Link>
           </div>
           <div className='SecondNavBarMainSixth'>
             <Link href="/Women" className='link'>WOMEN</Link>

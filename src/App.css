@@ -172,6 +172,7 @@
     color: white !important;
     text-decoration: none !important;
     font-size: 14px;
+    
 }
 
 .link:hover {
@@ -369,7 +370,7 @@
 }
 
 .firstNavIcon {
-    padding-top: 5px;
+    padding-top: 35px;
     display: flex;
     flex-direction: row;
     /* margin-top: 10px; */
@@ -480,6 +481,7 @@
 
 .leftViewSevenBtn {
     background-color: black !important;
+    color: white !important;
 }
 
 /* CARD INSIDE VIEW  END*/
@@ -718,7 +720,7 @@
 
 .linkText {
     color: black !important;
-    text-decoration: none;
+    text-decoration: none !important;
 }
 
 .submitBtn {
@@ -759,4 +761,9 @@
     align-items: center;
     height: 200px;
     align-content: center;
+}
+
+.category1{
+    height: 25rem !important;
+    /* width: 50px; */
 }

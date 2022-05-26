@@ -31,6 +31,7 @@ import PersonOutlinedIcon from '@mui/icons-material/PersonOutlined';
 import SearchOutlinedIcon from '@mui/icons-material/SearchOutlined';
 import { Link } from '@mui/material';
 import LocalMallIcon from '@mui/icons-material/LocalMall';
+import { useSelector } from "react-redux";
 
 
 const drawerWidth = 240;
@@ -81,30 +82,37 @@ const DrawerHeader = styled('div')(({ theme }) => ({
 }));
 
 export default function PersistentDrawerLeft() {
-    const Navigate = useNavigate()
+    const navigate = useNavigate()
+
     const NavigatingTologin = () => {
-        Navigate("/login")
+        navigate("/login")
     }
     const NavigatingToBrandSubMain = () => {
-        Navigate("/BrandSubMain")
+        navigate("/BrandSubMain")
     }
     const NavigatingToCartScreen = () => {
-        Navigate("/CartScreen");
+        navigate("/CartScreen");
     }
-    const StoredcartData = JSON.parse(localStorage.getItem('myCartData'))
-    const [cart, setCart] = useState([])
 
-    React.useEffect(() => {
-        if (StoredcartData) {
-            if (StoredcartData.length !== 0) {
-                setCart(StoredcartData)
-            } else {
-                setCart([])
-            }
-        } else {
-            setCart([])
-        }
-    }, [StoredcartData])
+    const {cart,loading} = useSelector(state=>state.cartDataReducer)
+    console.log(cart);
+
+
+    const StoredcartData = JSON.parse(localStorage.getItem('myCartData'))
+    // const [cart, setCart] = useState([])
+
+
+    // React.useEffect(() => {
+        // if (StoredcartData) {
+        //     if (StoredcartData.length !== 0) {
+        //         setCart(StoredcartData)
+        //     } else {
+        //         setCart([])
+        //     }
+        // } else {
+        //     setCart([])
+        // }
+    // }, [StoredcartData])
 
 
     const theme = useTheme();
@@ -139,17 +147,17 @@ export default function PersistentDrawerLeft() {
         <Box>
             <CssBaseline />
             <AppBar position="fixed" open={open}>
-                <Toolbar sx={{ marginTop: 5 }} className="MobileNavBarMainFirst" sx={{ backgrounCOlor: "white !important" }}>
+                <Toolbar  className="MobileNavBarMainFirst" sx={{backgrounCOlor: "white !important" }}>
                     <IconButton
                         aria-label="open drawer"
                         onClick={handleDrawerOpen}
                         edge="start"
-                        sx={{ mr: 2, ...(open && { display: 'none' }), color: "black" }}
+                        sx={{ mr: 2, ...(open && { display: 'none' }), color: "black", }}
                     >
                         <MenuIcon />
                     </IconButton>
                     <Typography variant="h6" component="div" sx={{ flexGrow: 1 }}>
-                        <Link component={LinkRoute} to="/"><img src={logo} alt="Logo" className="imgMobileLogo" sx={{ marginTop: 5 }} width="100rem" /></Link>
+                        <Link component={LinkRoute} to="/"><img src={logo} alt="Logo" className="imgMobileLogo" sx={{ marginTop: 5 }} width="60rem" /></Link>
                     </Typography>
                     <div onClick={NavigatingToCartScreen} className='firstNavIcon'>
                         <Link component={LinkRoute} to="/CartScreen" className='personIcon' sx={{ paddingLeft: 4 }}  ><LocalMallIcon />&nbsp;</Link>{cart.length} items
@@ -217,7 +225,7 @@ export default function PersistentDrawerLeft() {
                                         <Link className='linkText' href="/WprintedShirt" ><p className="mobileNavBarDrawerFontSize"><ArrowForwardIosSharpIcon className='icons' />PRINTED SHIRT</p></Link>
                                     </ListItem>
                                     <ListItem button>
-                                    <Link className='linkText' href="/WEmbro" ><p className="mobileNavBarDrawerFontSize"><ArrowForwardIosSharpIcon className='icons' />EMBROIDERED</p></Link>
+                                        <Link className='linkText' href="/WEmbro" ><p className="mobileNavBarDrawerFontSize"><ArrowForwardIosSharpIcon className='icons' />EMBROIDERED</p></Link>
                                     </ListItem>
                                     <ListItem button>
                                         <Link className='linkText' href="/Wshirt" ><p className="mobileNavBarDrawerFontSize"><ArrowForwardIosSharpIcon className='icons' />SHIRT</p></Link>
@@ -285,7 +293,25 @@ export default function PersistentDrawerLeft() {
                 <List>
                     <ListItem button>
                         <ListItemIcon>
+                            <Link className='linkText' href="/Eid" ><b className="mobileNavBarDrawerFontSize"> EID COLLECTION </b></Link>
+                        </ListItemIcon>
+                        <ListItemText />
+                    </ListItem>
+                </List>
+                <Divider />
+                <List>
+                    <ListItem button>
+                        <ListItemIcon>
                             <Link className='linkText' href="/Summer" ><b className="mobileNavBarDrawerFontSize"> SUMMER COLLECTION </b></Link>
+                        </ListItemIcon>
+                        <ListItemText />
+                    </ListItem>
+                </List>
+                <Divider />
+                <List>
+                    <ListItem button>
+                        <ListItemIcon>
+                            <Link className='linkText' href="/WeddingWear" ><b className="mobileNavBarDrawerFontSize"> WEDDING WEAR </b></Link>
                         </ListItemIcon>
                         <ListItemText />
                     </ListItem>
@@ -302,10 +328,9 @@ export default function PersistentDrawerLeft() {
                 <Divider />
 
                 <List>
-
                     <ListItem button>
                         <ListItemIcon>
-                            <Link className='linkText' href="/NewArrival" ><b className="mobileNavBarDrawerFontSize"> READY TO WEAR </b></Link>
+                            <Link className='linkText' href="/ReadyToWear" ><b className="mobileNavBarDrawerFontSize"> READY TO WEAR </b></Link>
                         </ListItemIcon>
                         <ListItemText />
                     </ListItem>

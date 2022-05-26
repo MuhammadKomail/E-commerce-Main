@@ -9,24 +9,6 @@ import { grey } from '@mui/material/colors';
 
 export default function DropDown(props) {
   
-  // const themeInstance = {
-  //   background: 'linear-gradient(45deg, #FE6B8B 30%, #FF8E53 90%)',
-  // };
-  // const useStyles = makeStyles((theme) => ({
-  //   root: {
-  //     background: theme.background,
-  //     border: 1 ,
-  //     borderColor: "white",
-  //     fontSize: 16,
-  //     borderRadius: 3,
-  //     boxShadow: theme.boxShadow,
-  //     color: 'white',
-  //     height: 48,
-  //     padding: '0 30px',
-  //   },
-  // }));
-  // const classes = useStyles();
-
   return (
     <Box sx={{ minWidth: 120 }}>
      <FormControl sx={{ m: 1, minWidth: 120 }}>

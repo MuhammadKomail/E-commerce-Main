@@ -1,19 +1,9 @@
 import React from 'react';
 import { Container, Grid, Button, Box, Typography, Accordion, AccordionSummary, AccordionDetails, FormControl, InputLabel, Select, MenuItem, TextField } from '@mui/material';
 import axios from 'axios';
-import ExpandMoreIcon from '@mui/icons-material/ExpandMore';
-import Table from '@mui/material/Table';
-import TableBody from '@mui/material/TableBody';
-import TableCell from '@mui/material/TableCell';
-import TableContainer from '@mui/material/TableContainer';
-import TableHead from '@mui/material/TableHead';
-import TableRow from '@mui/material/TableRow';
-import Paper from '@mui/material/Paper';
 import Header from '../component/Header'
 import Footer from '../component/Footer1'
-import { connect } from "react-redux"
 import { useState, useEffect } from 'react';
-import CardsInCart from "../component/CardsInCart"
 import { CartListData } from '../component/CartListData';
 import Loader from '../component/Loader'
 import NoDataFound from './NoDataFound';
@@ -23,55 +13,56 @@ import { useNavigate } from 'react-router'
 const CartScreen = () => {
 
 
-
+  const StoredcartData = JSON.parse(localStorage.getItem('myCartData'))
   const [cart, setCart] = useState([])
   const [loading, setLoading] = useState(true)
   const [data, setData] = React.useState([]);
-  const StoredcartData = JSON.parse(localStorage.getItem('myCartData'))
+  
+
+
+  
+
+
+  let [checkData, setCheckData] = React.useState([])
+
+
+  useEffect(() => {
+    
+  }, [])
+
+  const [findVal, setFindVal] = useState({})
+  const [totalAmount, setTotalAmount] = useState(0)
+
+
+
+
+  // const checkCartItems = () => {
+    
+  // }
+
 
 
   useEffect(() => {
     axios.get('https://surkhab.herokuapp.com/cards/')
       .then(res => {
         setData(res.data)
+        if (StoredcartData) {
+          if (StoredcartData.length !== 0) {
+            setCart(StoredcartData)
+          } else {
+            setCart([])
+          }
+        } else {
+          setCart([])
+        }
         setLoading(false)
       })
 
   }, [])
 
 
-  let [checkData, setCheckData] = React.useState([])
-
   useEffect(() => {
-    if (StoredcartData) {
-      if (StoredcartData.length !== 0) {
-        setCart(StoredcartData)
-      } else {
-        setCart([])
-      }
-    } else {
-      setCart([])
-    }
-    // console.log(cart)
 
-  }, [StoredcartData])
-  useEffect(() => {
-    if (StoredcartData) {
-      if (StoredcartData.length !== 0) {
-        setCart(StoredcartData)
-      } else {
-        setCart([])
-      }
-    } else {
-      setCart([])
-    }
-    // console.log(cart)
-  }, [])
-
-  const [findVal, setFindVal] = useState({})
-  const [totalAmount, setTotalAmount] = useState(0)
-
-  useEffect(() => {
     let amount = 0
     if (cart && cart.lenth !== 0) {
       if (data && data.length !== 0) {
@@ -87,19 +78,20 @@ const CartScreen = () => {
     } else {
       setCart([])
     }
-  }, [cart])
 
+  }, [cart])
   const [sendingData, setSendingData] = useState([])
 
   const navigate = useNavigate();
+
   function checkOut() {
     if (!loading) {
-      if (StoredcartData == null) {
+      if (totalAmount == 0) {
         console.log('No data Found')
       } else {
         console.log('Data Found')
         console.log(StoredcartData)
-        navigate('/mainOrderForm', {state: totalAmount})
+        navigate('/mainOrderForm', { state: totalAmount })
       }
     }
   }
@@ -121,10 +113,10 @@ const CartScreen = () => {
         </Box>
 
         <Grid container >
-          <Grid item p={2} md={8} sm={12}>
-            <Box p={3}
+          <Grid item p={2} md={8} sm={12} xs={12}>
+            <Box  
               sx={{ border: '1px Solid #DCDCDC', backgroundColor: "#F5F5F5" }}>
-              {loading ? <Loader /> : cart && cart.length !== 0 ? <Grid container p={3} spacing={2}><Grid item xs={12} md={12}>
+              {loading ? <Loader /> : cart && cart.length !== 0 ? <Grid container spacing={2}><Grid item  xl={12} xs={12}  sm={12}>
                 {cart.map((e) => <CartListData id={e.id} qty={e.qty} allData={data} />)}
               </Grid></Grid> : <NoDataFound />}
 

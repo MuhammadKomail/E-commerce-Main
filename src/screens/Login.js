@@ -70,10 +70,9 @@ const Login = () => {
         }
     }
 
-
-    const Navigate = useNavigate()
+    
     const NavigatingTosignup = () => {
-        Navigate("/signup")
+        navigate("/signup")
     }
     return <>
         <Header />

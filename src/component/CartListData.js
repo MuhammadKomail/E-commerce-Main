@@ -1,4 +1,4 @@
-import { Grid, Typography } from '@mui/material'
+import {  Typography } from '@mui/material'
 import React, { useEffect, useState } from 'react'
 import CardsInCart from './CardsInCart'
 
@@ -18,6 +18,6 @@ export const CartListData = ({ id, qty, allData }) => {
 
   return (
     <div>{findVal ?
-      <CardsInCart qty={qty} pic={findVal.imageUrl1} title={findVal.title} price={findVal.discountPrice == null ? findVal.orignalPrice : findVal.discountPrice} id={findVal._id} /> : <Typography>Value</Typography>}</div>
+      <CardsInCart qty={qty} pic={findVal.imageUrl1} title={findVal.title} price={findVal.discountPrice == null ? findVal.orignalPrice : findVal.discountPrice} id={findVal._id} quantity={findVal.quantity} /> : <Typography>Value</Typography>}</div>
   )
 }

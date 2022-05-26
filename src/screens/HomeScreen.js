@@ -17,20 +17,34 @@ import cotton from '../images/02.jpg'
 import { addCartData } from '../redux/shoppingCart/shopping-cart-actions';
 import NoDataFound from './NoDataFound';
 import swal from 'sweetalert';
-
+import bannerImages1 from '../bannerImages/1.jpeg'
+import bannerImages2 from '../bannerImages/2.jpeg'
+import bannerImages3 from '../bannerImages/3.jpeg'
+import bannerImages4 from '../bannerImages/4.jpeg'
+import bannerImages5 from '../bannerImages/11.jpeg'
+import bannerImages6 from '../bannerImages/6.jpeg'
+import bannerImages7 from '../bannerImages/7.jpeg'
+import bannerImages8 from '../bannerImages/8.jpeg'
+import menImage from '../images/men.jpg'
+import { fileteredData } from '../helper/filter_data';
+import { useSelector } from 'react-redux'
 
 function HomeScreen() {
 
     const navigate = useNavigate();
     const [data, setData] = React.useState([])
     const [loader, setLoader] = React.useState(true)
+    const [filterDataMen, setFilterDataMen] = React.useState([])
 
-    
+
+    const state = useSelector(state=>state)
+
+
     const viewDetails = (id) => {
         navigate("/CardInsideView", { state: id });
     }
     const dispatch = useDispatch();
-    
+
     const addToCard = (e) => {
         console.log("Add To Cart")
         addCartData(dispatch, e._id)
@@ -39,16 +53,27 @@ function HomeScreen() {
             text: "Your Item Has Been Added To Your Cart list!",
             icon: "success",
             button: "Ok!",
-          });
+        });
     }
-    
-    axios.get('https://surkhab.herokuapp.com/cards/')
-    .then((res) => {
-        setData(res.data)
-        setLoader(false)
-    })
-    let filterDataMen = data.length == 0 ? 0 : data.filter((fil) => fil.category == 'Men')
-    
+
+    React.useEffect(() => {
+        axios.get('https://surkhab.herokuapp.com/cards/')
+        .then((res) => {
+            setData(res.data)
+            setFilterDataMen(fileteredData(res.data,'category','Men'))
+            setLoader(false)
+        })
+
+        
+    }, [])
+
+    // axios.get('https://surkhab.herokuapp.com/cards/')
+    //     .then((res) => {
+    //         setData(res.data)
+    //         setLoader(false)
+    //     })
+    // let filterDataMen = data.length == 0 ? 0 : data.filter((fil) => fil.category == 'Men')
+
     return <div>
         <Header />
 
@@ -59,24 +84,27 @@ function HomeScreen() {
                 <Typography variant="h4" className="fancy" >Shop By Fabric</Typography>
             </Grid>
 
-            <Grid item md={2} sm={4} xs={4}>
-                <Link href='/FabricLinen'> <img alt="img" className="category" src="https://www.alkarimfabric.com/pub/media/fabric/3.png" /></Link>
+            <Grid item md={3} sm={4} xs={4}>
+                <Link href='/FabricCambric'> <img alt="img" className="category" src="https://www.alkarimfabric.com/pub/media/fabric/3.png" /></Link>
             </Grid>
-            <Grid item md={2} xs={4}
+            <Grid item md={3} xs={4}
                 sm={4}>
                 <Link href='/FabricVelvet'><img alt="img" className="category" src={cotton} /></Link>
             </Grid>
-            <Grid item md={2} sm={4} xs={4}>
+            <Grid item md={3} sm={4} xs={4}>
                 <Link href='/FabricChiffon'><img alt="img" className="category" src="https://www.alkarimfabric.com/pub/media/fabric/04.webp" /></Link>
             </Grid>
-            <Grid item md={2} sm={4} xs={4}>
+            <Grid item md={3} sm={4} xs={4}>
                 <Link href='/FabricBanarsi'><img alt="img" className="category" src="https://www.alkarimfabric.com/pub/media/fabric/05.webp" /></Link>
             </Grid>
-            <Grid item md={2} sm={4} xs={4}>
+            <Grid item md={3} sm={4} xs={4}>
                 <Link href='/FabricLinen'><img alt="img" className="category" src="https://www.alkarimfabric.com/pub/media/fabric/03.webp" /></Link>
             </Grid>
-            <Grid item md={2} sm={4} xs={4}>
+            <Grid item md={3} sm={4} xs={4}>
                 <Link href='/FabricKhaddar'><img alt="img" className="category" src="https://www.alkarimfabric.com/pub/media/fabric/06.webp" /></Link>
+            </Grid>
+            <Grid item md={3} sm={4} xs={4}>
+                <Link href='/'><img alt="img" className="category" src={lawn} /></Link>
             </Grid>
 
         </Grid>
@@ -91,32 +119,19 @@ function HomeScreen() {
 
 
         <Grid container spacing={2} mt={2}>
-            <Grid item md={5} >
-                <CarouselComp pic1="https://www.alkarimfabric.com/pub/media/homepageslider/slide1-0001.webp"
-                    pic2="https://www.alkarimfabric.com/pub/media/homepageslider/slide2-0001.webp" />
+            <Grid item md={4} >
+                <CarouselComp pic1={bannerImages1}
+                    pic2={bannerImages2} />
             </Grid>
-            <Grid item md={3} >
-                <CarouselComp pic1="https://www.alkarimfabric.com/pub/media/homepageslider/slide1-0002.webp"
-                    pic2="https://www.alkarimfabric.com/pub/media/homepageslider/slide2-0002.webp" />
+            <Grid item md={4} >
+                <CarouselComp pic1={bannerImages3}
+                    pic2={bannerImages4} />
             </Grid>
-            <Grid item md={4}>
-                <Grid
-                    container
-                    direction="column"
-                    justifyContent="center"
-                    alignItems="center"
+            <Grid item md={4} >
+                <CarouselComp pic1={bannerImages5}
+                    pic2={bannerImages6} />
+            </Grid>
 
-                >
-                </Grid>
-                <Grid item md={12}>
-                    <CarouselComp pic1="https://www.alkarimfabric.com/pub/media/homepageslider/slide2-0003.webp"
-                        pic2="https://www.alkarimfabric.com/pub/media/homepageslider/slide1-0003.webp" />
-                </Grid>
-                <Grid item md={12}>
-                    <CarouselComp pic1="https://www.alkarimfabric.com/pub/media/homepageslider/slide2-0004.webp"
-                        pic2="https://www.alkarimfabric.com/pub/media/homepageslider/slide1-0004.webp" />
-                </Grid>
-            </Grid>
         </Grid>
 
 
@@ -169,7 +184,13 @@ function HomeScreen() {
                 return (
                     <>
                         <Grid item xs={6} md={3}>
-                            <Cards onClick1={() => addToCard(e)} onClick={() => viewDetails(e)} pic={e.imageUrl1} pic2={e.imageUrl2} title={e.title} price={e.orignalPrice} />
+                            <Cards onClick1={() => addToCard(e)} onClick={() => viewDetails(e)} pic={e.imageUrl1} pic2={e.imageUrl2} title={e.title} price={e.orignalPrice} price2={e.dorignalPrice}
+                            
+                            // ======
+                            cardData={e} 
+                            // =======
+                            
+                            />
                         </Grid>
                     </>
                 )
@@ -188,7 +209,7 @@ function HomeScreen() {
                 <Typography variant="h4" className="fancy" >MEN'S COLLECTION</Typography>
             </Grid>
             <Grid item md={12} sm={12} >
-                <img alt="img" className='category' src="https://www.alkarimfabric.com/pub/media/banner/men.webp" />
+                <img alt="img" className='category' src={menImage} height="50%" />
             </Grid>
         </Grid>
 
@@ -198,7 +219,7 @@ function HomeScreen() {
                 return (
                     <>
                         <Grid item xs={6} md={3}>
-                            <Cards onClick1={() => addToCard(e)} onClick={() => viewDetails(e)} pic={e.imageUrl1} pic2={e.imageUrl2} title={e.title} price={e.orignalPrice} />
+                            <Cards onClick1={() => addToCard(e)} onClick={() => viewDetails(e)} pic={e.imageUrl1} pic2={e.imageUrl2} title={e.title} price={e.orignalPrice} price2={e.dorignalPrice} />
                         </Grid>
                     </>
                 )

@@ -23,39 +23,34 @@ export const getLocalcartData = async (dispatch) => {
 }
 
 
-    export const addCartData = async (dispatch, id) => {
+export const addCartData = async (dispatch, id) => {
 
-        const StoredcartData = await JSON.parse(localStorage.getItem(myCartData))
-        if (StoredcartData) {
-            if (StoredcartData.length !== 0) {
-                const findObj = StoredcartData.find((e) => e.id === id)
-                if (findObj) {
-                    findObj.qty = findObj.qty + 1
-                    dispatch({
-                        type: 'SET_MY_CART_DATA',
-                        payload: StoredcartData
-                    })
-                    localStorage.setItem(myCartData, JSON.stringify(StoredcartData))
-                }
-                else {
-                    const data = {
-                        id: id,
-                        qty: 1
-                    }
-                    StoredcartData.push(data)
-                    localStorage.setItem(myCartData, JSON.stringify(StoredcartData))
-                }
+    const StoredcartData = await JSON.parse(localStorage.getItem(myCartData))
+    if (StoredcartData) {
+        if (StoredcartData.length !== 0) {
+            const findObj = StoredcartData.find((e) => e.id === id)
+            if (findObj) {
+                findObj.qty = findObj.qty + 1
+                localStorage.setItem(myCartData, JSON.stringify(StoredcartData))
+                dispatch({
+                    type: 'SET_MY_CART_DATA',
+                    payload: StoredcartData
+                })
             }
             else {
-                const dataArr = []
                 const data = {
                     id: id,
                     qty: 1
                 }
-                dataArr.push(data)
-                localStorage.setItem(myCartData, JSON.stringify(dataArr))
+                StoredcartData.push(data)
+                localStorage.setItem(myCartData, JSON.stringify(StoredcartData))
+                dispatch({
+                    type: 'SET_MY_CART_DATA',
+                    payload: StoredcartData
+                })
             }
-        } else {
+        }
+        else {
             const dataArr = []
             const data = {
                 id: id,
@@ -63,8 +58,25 @@ export const getLocalcartData = async (dispatch) => {
             }
             dataArr.push(data)
             localStorage.setItem(myCartData, JSON.stringify(dataArr))
+            dispatch({
+                type: 'SET_MY_CART_DATA',
+                payload: dataArr
+            })
         }
+    } else {
+        const dataArr = []
+        const data = {
+            id: id,
+            qty: 1
+        }
+        dataArr.push(data)
+        localStorage.setItem(myCartData, JSON.stringify(dataArr))
+        dispatch({
+            type: 'SET_MY_CART_DATA',
+            payload: dataArr
+        })
     }
+}
 
 
 
@@ -96,4 +108,11 @@ export const getLocalcartData = async (dispatch) => {
 
         }
 
+    }
+
+    export const CHANGE_PRICE = (dispatch,value)=>{
+        dispatch({
+            type: "CHANGE_PRICE",
+            payload:value
+        })
     }

@@ -8,15 +8,23 @@ import { CardActionArea } from '@mui/material';
 import { Box } from '@mui/system';
 import Button from '@mui/material/Button';
 import ShoppingCartIcon from '@mui/icons-material/ShoppingCart';
+import { useSelector } from 'react-redux';
+import { AddToCartButton } from './AddToCartButton';
 
 
 
 export default function Cards(props) {
 
   const [isShown, setIsShown] = useState(false);
+  // const priceState = useSelector(state => state)
+  // console.log(priceState)
+  const priceState = true
+
   let pic = props.pic
   let pic2 = props.pic2
   let newtag = props.new
+  // let price = props.price
+  // let price2 = props.price
 
   return (
     <Card sx={{ maxWidth: 345, borderRadius: 0, pb: 1, borderColor: "white" }}>
@@ -54,13 +62,22 @@ export default function Cards(props) {
         <Typography sx={{ fontWeight: 'bold' }} variant="subtitle2" color="text.secondary">
           {props.title}
         </Typography>
-        <Typography variant="button" color="text.secondary">
-          Price : {props.price}
-        </Typography>
+
+        {
+          priceState ? <Typography variant="button" color="text.secondary">Price :   {props.price} </Typography> :
+            <Typography variant="button" color="text.secondary">Price :   {props.price2} </Typography>
+        }
+
+
       </CardContent>
-      <div className='center1'>
+
+      {/* ====== */}
+      <AddToCartButton onClickHandle={props.onClick1} cardData={props.cardData} />
+      {/* ====== */}
+      
+      {/* <div className='center1'>
         <Button onClick={props.onClick1} variant="outlined" style={{ color: "gray", borderColor: "lightgray", borderRadius: 0, alignItems: "center", alignContent: "center" }} size="small" endIcon={<ShoppingCartIcon />}>Add to Cart</Button>
-      </div>
+      </div> */}
     </Card>
   );
 }

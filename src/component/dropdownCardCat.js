@@ -33,7 +33,7 @@ export default function dropdownCard() {
                         </div>
                     </div>
                     <div className='dropdownCardMainThird'>
-                        <img src={logo} width="200px" />
+                        <img src={logo} width="110px" />
                     </div>
                 </div>
             </div>

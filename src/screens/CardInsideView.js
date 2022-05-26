@@ -13,6 +13,7 @@ import { useNavigate } from 'react-router'
 import { useDispatch, useSelector } from 'react-redux';
 import { addCartData } from '../redux/shoppingCart/shopping-cart-actions';
 import swal from 'sweetalert';
+import { AddToCartButton } from '../component/AddToCartButton';
 
 function CardInsideView() {
 
@@ -56,9 +57,7 @@ function CardInsideView() {
                 <div>
                   {location.state == null ? null : <img alt="img" src={location.state.imageUrl2} />}
                 </div>
-
               </Carousel>
-              {/* <ImageClicker pic1={location.state.img1} pic2={location.state.img2}/> */}
             </div>
           </Grid>
           <Grid item xs={12} sm={8} xl={5}>
@@ -67,7 +66,16 @@ function CardInsideView() {
                 {location.state == null ? null : location.state.title}
               </div>
               <div className='leftViewSecond'>
-                {location.state == null ? null : (location.state.fabric == '' ? null : `Fabric:` + location.state.fabric)}
+                {location.state == null ? null : (location.state.fabric == '' ? null : `Fabric: ` + location.state.fabric)}
+              </div>
+              <div className='leftViewSecond'>
+                {location.state == null ? null : (location.state.skuNumber == '' ? null : `SKU Number : ` + location.state.skuNumber)}
+              </div>
+              <div className='leftViewSecond'>
+                {location.state == null ? null : (location.state.collections == '' ? null : `Collections : ` + location.state.collections)}
+              </div>
+              <div className='leftViewSecond'>
+                {location.state == null ? null : (location.state.newArrival == '' ? null : `Arrival : ` + location.state.newArrival)}
               </div>
               <div className='leftViewThird'>
                 <b> Details:</b> <br />
@@ -82,8 +90,9 @@ function CardInsideView() {
                 <div className='leftViewSixthSecond'>Availability: {location.state == null ? null : (location.state.availability)}</div>
               </div>
               <div className='leftViewSeven'>
-                {location.state == null ? null : (location.state.availability != 'Available' ? <p>Sorry The Product is Not Available</p> : <Button className='leftViewSevenBtn' onClick={addToCart} variant="contained">Add to Cart</Button>)}
+                {location.state == null ? null : (location.state.availability != 'Available' ? <p>Sorry The Product is Not Available</p> : <AddToCartButton onClickHandle={addToCart} cardData={location.state} />)}
               </div>
+              
             </div>
           </Grid>
         </Grid>

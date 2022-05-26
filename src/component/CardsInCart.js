@@ -8,29 +8,50 @@ import IconButton from '@mui/material/IconButton';
 import Typography from '@mui/material/Typography';
 import AddOutlinedIcon from '@mui/icons-material/AddOutlined';
 import RemoveOutlinedIcon from '@mui/icons-material/RemoveOutlined';
-import DeleteIcon from '@mui/icons-material/Delete';
-import { connect } from "react-redux"
-import { RemoveFromCart, adjustQuantity } from "../redux/shopping/shopping-action"
 import TextField from '@mui/material/TextField';
 import { useState } from 'react';
 import { addCartData, removeCartItem } from '../redux/shoppingCart/shopping-cart-actions';
 import { useDispatch } from 'react-redux';
 import { useNavigate } from 'react-router-dom';
+import { useSelector } from 'react-redux';
+import swal from 'sweetalert';
 
 function CardsInCart(props) {
   const [input, setInput] = useState(props.qty)
   const theme = useTheme();
   const dispatch = useDispatch()
-  const navigate = useNavigate()
+
 
   const onChangehandler = (e) => {
     setInput(e.target.value)
   }
 
+  const { cart, loading } = useSelector(state => state.cartDataReducer)
+
   function addItem() {
-    console.log(props.id)
-    addCartData(dispatch, props.id)
+    // ===========================================
+    const findInd = cart.find((e) => e.id === props.id)
+    if (findInd) {
+      if (findInd.qty === props.quantity) {
+        // console.log('Quantity exceeded!')
+        swal({
+          title: "Sorry",
+          text: "Quantity exceeded!",
+          icon: "warning",
+          button: "ok!",
+        });
+      }
+      else {
+        addCartData(dispatch, props.id)
+        window.location.reload()
+      }
+    }
+    else {
+      addCartData(dispatch, props.id)
     window.location.reload()
+    }
+    // ===========================================
+
   }
 
   function removeItem() {
@@ -43,12 +64,11 @@ function CardsInCart(props) {
     <Card sx={{ display: 'flex', marginTop: 2, marginBottom: 2 }} >
       <CardMedia
         component="img"
-        sx={{ width: 131 }}
+        sx={{ width: 121 }}
         image={props.pic}
-        alt="Live from space album cover"
+        alt="Loading..."
       />
       <Box sx={{ display: 'flex', flexDirection: 'column' }}>
-
         <CardContent sx={{ flex: '1 0 auto' }}>
           <Typography component="div" variant="h5">
             {props.title}

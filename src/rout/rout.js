@@ -1,15 +1,20 @@
-import React from "react";
+import React, { useEffect } from "react";
+import { useDispatch } from "react-redux";
 import { BrowserRouter as Router, Route, Routes } from "react-router-dom";
 import {
     Home, BrandSubMain, Signup, Login, CartScreen, CardInsideView,
+    ReadyToWear,
     Accountinfo, Myaccount, Myorders, MainOrderForm, PageNotFound, Category,
     Women,
+    Surkhab,
+    Eid,
     WprintedShirt,
     WEmbro,
     Wshirt,
     Wduppata,
     W2piece,
     W3piece,
+    Wtrouser,
     Men,
     Mpasha,
     MELANGE,
@@ -27,11 +32,47 @@ import {
     FabricKhaddar,
     FabricVelvet,
     WeddingWear,
-    NoDataFound
+    NoDataFound,
+    
+    Adam,
+    Zohaib,
+    Borque,
+    Saeed,
+    Khadija,
+    Firdous,
+    Grace,
+    Hz,
+    Jazmin,
+    Johra,
+    Mt,
+    Pasha,
+    Rashid,
+    Rivayat,
+    Riyaz,
+    Surkhad,
+    Tawakal,
+    Vs,
+    Yameen,
+    Zarif
 } from ".";
+import { getLocalcartData } from "../redux/shoppingCart/shopping-cart-actions";
 
 
 export default function AppRouter() {
+
+    const dispatch = useDispatch()
+
+    useEffect(() => {
+        getLocalcartData(dispatch)
+      
+    }, [])
+    
+
+
+
+
+
+
     return (
         <Router >
             <div>
@@ -66,6 +107,7 @@ export default function AppRouter() {
                     <Route path="/NewArrival" element={<NewArrival />} />
                     <Route path="/Winter" element={<Winter />} />
                     <Route path="/Summer" element={<Summer />} />
+                    <Route path="/Eid" element={<Eid />} />
                     <Route path="/FabricCambric" element={<FabricCambric />} />
                     <Route path="/FabricLinen" element={<FabricLinen />} />
                     <Route path="/FabricChiffon" element={<FabricChiffon />} />
@@ -73,7 +115,30 @@ export default function AppRouter() {
                     <Route path="/FabricKhaddar" element={<FabricKhaddar />} />
                     <Route path="/FabricVelvet" element={<FabricVelvet />} />
                     <Route path="/WeddingWear" element={<WeddingWear />} />
+                    <Route path="/ReadyToWear" element={<ReadyToWear />} />
+                    <Route path="/Wtrouser" element={<Wtrouser />} />
                     <Route path="/NoDataFound" element={<NoDataFound />} />
+                    <Route path="/Adam" element={<Adam />} />
+                    <Route path="/Zohaib" element={<Zohaib />} />
+                    <Route path="/Borque" element={<Borque />} />
+                    <Route path="/Saeed" element={<Saeed />} />
+                    <Route path="/Khadija" element={<Khadija />} />
+                    <Route path="/Firdous" element={<Firdous />} />
+                    <Route path="/Grace" element={<Grace />} />
+                    <Route path="/Hz" element={<Hz />} />
+                    <Route path="/Jazmin" element={<Jazmin />} />
+                    <Route path="/Johra" element={<Johra />} />
+                    <Route path="/Mt" element={<Mt />} />
+                    <Route path="/Pasha" element={<Pasha />} />
+                    <Route path="/Rashid" element={<Rashid />} />
+                    <Route path="/Rivayat" element={<Rivayat />} />
+                    <Route path="/Riyaz" element={<Riyaz />} />
+                    <Route path="/Surkhad" element={<Surkhad />} />
+                    <Route path="/Tawakal" element={<Tawakal />} />
+                    <Route path="/Vs" element={<Vs />} />
+                    <Route path="/Yameen" element={<Yameen />} />
+                    <Route path="/Zarif" element={<Zarif />} />
+                    <Route path="/Surkhab" element={<Surkhab />} />
                 </Routes>
             </div>
         </Router>

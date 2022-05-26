@@ -1,7 +1,5 @@
 import React from 'react'
-// import Header from './Header'
 import Navbar from './Navbar'
-// import Card from './Card'
 import Paper from '@mui/material/Paper';
 import { styled } from '@mui/material/styles';
 import Grid from '@mui/material/Grid';
